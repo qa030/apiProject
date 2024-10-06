@@ -1,0 +1,31 @@
+name: Automated
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default:
+          type: choice
+          options:
+            - one_test
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      - name: Install Chrome
+        run: sudo apt-get install google-chrome-stable
+      - name: install dependencies
+        run: pip install -r requirements.txt
+      - name: one_test
+        if: "github.event.inputs.deployment_target == 'one_test'"
+        run: pytest tests/test_google_maps_api.py::Test_create_place::test_create_new_place
