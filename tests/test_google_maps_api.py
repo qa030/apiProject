@@ -58,6 +58,6 @@ class Test_create_place():
         Checking.check_json_value(result_get, 'msg', "Get operation failed, looks like place_id  doesn't exists")
         Checking.check_json_search_word_in_value(result_get, 'msg', 'failed')
 
-        print("Тестирование создания, изменения и удаления новой локации прошло успешно!!!")
+        print("Тестирование создания, изменения и удаления новой локации прошло успешно!!")
 
 
