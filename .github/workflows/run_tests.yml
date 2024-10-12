@@ -1,7 +1,15 @@
 name: Automated tests
 
 on:
-  push
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default:
+          type: choice
+          options:
+            - one_test
 
 jobs:
   test:
@@ -18,5 +26,6 @@ jobs:
         run: sudo apt-get install google-chrome-stable
       - name: install dependencies
         run: pip install -r requirements.txt
-      - name: Run test
+      - name: one_test
+        if: "github.event.inputs.deployment_target == 'one_test'"
         run: pytest
