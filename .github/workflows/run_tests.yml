@@ -1,4 +1,4 @@
-name: Automated tests
+name: Automated test
 
 on:
   workflow_dispatch:
